@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Главная</title>
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico"/>
+    <link rel="stylesheet" href="templates/main.css"/>
+</h:head>
+<h:body>
+    <div class="return-container">
+        <h:form>
+            <h:commandButton id="openButton" value="index page" action="goToMain" styleClass="custom-button"/>
+        </h:form>
+    </div>
+    <div class="main-container">
+        <section class="block plot-section">
+            <div class="graphic">
+                <svg id="graph" height="300" width="500" xmlns="http://www.w3.org/2000/svg">
+                        <!-- четверть круга, левая нижняя часть -->
+                        <circle id = "round" cx="250" cy="150" r="50" fill="#8F4A46" fill-opacity="0.6"/>
+                        <rect id = "rect1" x="200" y="100" width="50" height="50" fill="#DEBDBB" fill-opacity="1"/>
+                        <rect id = "rect2" x="250" y="50" width="50" height="200" fill="#DEBDBB" fill-opacity="1"/>
+
+                        <!-- прямоугольник, правая верхняя часть -->
+                        <rect id = "rect3" x="250" y="50" width="100" height="100" fill="#8F4A46" fill-opacity="0.6"/>
+
+                        <!-- Треугольник (правая нижняя часть) -->
+                        <polygon id = "triangle" points="250,150 350,150 250,200" fill="#8F4A46" fill-opacity="0.6"/>
+                        <!-- Центр оси координат -->
+                        <circle id="target-dot" cx="250" cy="150" r="0" stroke="white" fill="white"></circle>
+                        <line stroke="#2B465E" x1="100" x2="400" y1="150" y2="150"></line>
+                        <line stroke="#2B465E" x1="250" x2="250" y1="0" y2="300"></line>
+                        <polygon fill="white" points="250,0 244,15 256,15" stroke="white"></polygon>
+                        <polygon fill="white" points="400,150 385,156 385,144" stroke="white"></polygon>
+
+                        <!-- Засечки -->
+                        <line stroke="#2B465E" x1="300" x2="300" y1="155" y2="145"></line>
+                        <line stroke="#2B465E" x1="350" x2="350" y1="155" y2="145"></line>
+
+                        <line stroke="#2B465E" x1="150" x2="150" y1="155" y2="145"></line>
+                        <line stroke="#2B465E" x1="200" x2="200" y1="155" y2="145"></line>
+
+                        <line stroke="#2B465E" x1="245" x2="255" y1="100" y2="100"></line>
+                        <line stroke="#2B465E" x1="245" x2="255" y1="50" y2="50"></line>
+
+                        <line stroke="#2B465E" x1="245" x2="255" y1="200" y2="200"></line>
+                        <line stroke="#2B465E" x1="245" x2="255" y1="250" y2="250"></line>
+
+                        <!-- Подписи к засечкам    -->
+                        <text fill="white" x="295" y="140">R/2</text>
+                        <text fill="white" x="348" y="140">R</text>
+
+                        <text fill="white" x="140" y="140">-R</text>
+                        <text fill="white" x="190" y="140">-R/2</text>
+
+                        <text fill="white" x="260" y="105">R/2</text>
+                        <text fill="white" x="260" y="55">R</text>
+
+                        <text fill="white" x="260" y="205">-R/2</text>
+                        <text fill="white" x="260" y="255">-R</text>
+
+                        <text fill="white" x="260" y="10">Y</text>
+                        <text fill="white" x="390" y="140">X</text>
+                </svg>
+            </div>
+        </section>
+    </div>
+    <h:form id="mainForm">
+        <div class="form-container">
+            <h:panelGrid columns="1" style="margin-bottom: 10px">
+                <p:inputText id="xSlider" />
+                <p:slider for="xSlider" onSlideEnd="mySliderFunction(this)" minValue="-2" maxValue="2" step="1"/>
+            </h:panelGrid>
+
+            <h:outputLabel for="yInput" value="Y: "/>
+            <h:inputText id="yInput" onchange="updateY(this.value)" styleClass="input-field">
+            </h:inputText>
+
+            <h:outputLabel for="rInput" value="R: "/>
+            <h:inputText id="rInput" value="2" onchange="updateR(this.value)" styleClass="input-field">
+            </h:inputText>
+
+            <h:commandButton id="valueButton" value="Проверить" styleClass="button" onclick="return validateInputs();">
+                <f:ajax execute="xHidden yHidden rHidden"
+                        listener="#{checkPointBean.check(pointBean)}"
+                        render="resultsTable"/>
+                <label id="Ystatus"/>
+                <label id="Rstatus"/>
+            </h:commandButton>
+
+            <h:inputHidden id="xHidden" value="#{pointBean.x}"/>
+            <h:inputHidden id="yHidden" value="#{pointBean.y}"/>
+            <h:inputHidden id="rHidden" value="#{pointBean.r}"/>
+        </div>
+        <h:dataTable id="resultsTable" value="#{checkPointBean.getResults()}" var="result" styleClass="data-table">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                <h:outputText value="#{result.x}">
+                    <f:convertNumber pattern="#.###" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                <h:outputText value="#{result.y}">
+                    <f:convertNumber pattern="#.###" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                <h:outputText value="#{result.r}">
+                    <f:convertNumber pattern="#.###" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Result</f:facet>
+                #{result.isHit}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Execution Time</f:facet>
+                #{result.execution_time}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Server Time</f:facet>
+                #{result.server_time}
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    <script src="main.js"> </script>
+</h:body>
+</html>
+

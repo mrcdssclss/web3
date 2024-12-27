@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<link rel="stylesheet" href="templates/index.css"/>
+<h:body>
+    <div>
+        <h1>web-programming lab3 var 2435</h1>
+        <h2>Шмидт Александра Андреевна P3215 409908</h2>
+    </div>
+
+    <div id="clock"> </div>
+    <h:form>
+        <h:commandButton id="openButton" value="main page" action="goToIndex" styleClass="custom-button"/>
+    </h:form>
+
+    <script type="text/javascript">
+        const clockDiv = document.getElementById('clock');
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            clockDiv.innerText = hours + ":" + minutes + ":" + seconds;
+        }
+        setInterval(updateClock, 13000);
+        updateClock();
+    </script>
+</h:body>
+</html>
