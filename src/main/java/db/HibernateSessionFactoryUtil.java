@@ -6,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateSessionFactoryUtil {
 
-    //конфигуратор session facoty - позволяет получать готовую сессию если нул то создаем, иначе подтягиваем из ресурсов и возвращаем
     private static SessionFactory sessionFactory;
 
     private HibernateSessionFactoryUtil() {}

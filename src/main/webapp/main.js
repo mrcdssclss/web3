@@ -1,4 +1,3 @@
-//todo сделать css
 const graph = document.getElementById("graph")
 updateR()
 

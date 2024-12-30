@@ -6,12 +6,12 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/studs</property>
-        <property name="hibernate.connection.username">s409908</property>
-        <property name="hibernate.connection.password">CJGT8bpGhnfepsgt</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">CyhM*4382</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.show_sql">true</property> <!-- Выводить SQL запросы в консоль -->
-        <property name="hibernate.format_sql">true</property> <!-- Форматировать SQL запросы -->
-        <property name="hibernate.hbm2ddl.auto">update</property> <!-- Автоматически создавать таблицы в БД -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
     </session-factory>
 </hibernate-configuration>
