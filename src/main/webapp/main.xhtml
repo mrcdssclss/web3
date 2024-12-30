@@ -69,20 +69,21 @@
     </div>
     <h:form id="mainForm">
         <div class="form-container">
+            <h:outputLabel for="xSlider" value="Введите значение X: "/>
             <h:panelGrid columns="1" style="margin-bottom: 10px">
                 <p:inputText id="xSlider" />
                 <p:slider for="xSlider" onSlideEnd="mySliderFunction(this)" minValue="-2" maxValue="2" step="1"/>
             </h:panelGrid>
 
-            <h:outputLabel for="yInput" value="Y: "/>
+            <h:outputLabel for="yInput" value="Введите значение Y: "/>
             <h:inputText id="yInput" onchange="updateY(this.value)" styleClass="input-field">
             </h:inputText>
 
-            <h:outputLabel for="rInput" value="R: "/>
+            <h:outputLabel for="rInput" value="Введите значение R: "/>
             <h:inputText id="rInput" value="2" onchange="updateR(this.value)" styleClass="input-field">
             </h:inputText>
 
-            <h:commandButton id="valueButton" value="Проверить" styleClass="button" onclick="return validateInputs();">
+            <h:commandButton id="valueButton" value="Проверить" styleClass="value-button" onclick="return validateInputs()">
                 <f:ajax execute="xHidden yHidden rHidden"
                         listener="#{checkPointBean.check(pointBean)}"
                         render="resultsTable"/>

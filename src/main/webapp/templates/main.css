@@ -3,16 +3,6 @@ body {
     color: #2B465E;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #C47F7B;
-    color: #BACDDE;
-    cursor: pointer;
-}
-
 table {
     margin: auto;
     width: 800px;
@@ -23,29 +13,74 @@ label, select, input, button {
     width: 25%;
 }
 
-.return-container .form-container .main-container{
+.plot-section {
+    flex: 1;
+}
+
+.form-section {
+    flex: 1;
+}
+
+.graphic {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
- input, .button {
-     width: 100%;
+.return-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.custom-button{
+    padding: 10px 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8F4A46;
+    color: white;
+    font-size: 12px;
+    width: 220px;
+    text-align: center;
+    cursor: pointer;
+}
+.custom-button:hover{
+    background-color:  #2B465E;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.value-button {
+    padding: 10px 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8F4A46;
+    color: white;
+    font-size: 12px;
+    width: 220px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.value-button:hover {
+    background-color: #2B465E;
+}
+
+ input {
+     width: 50%;
      padding: 8px;
      margin-bottom: 10px;
      border: 1px solid #DEBDBB;
      border-radius: 5px;
  }
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #2B465E;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #8F4A46;
-}
 

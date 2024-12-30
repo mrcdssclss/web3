@@ -6,10 +6,10 @@ import java.util.List;
 
 //забирает сессию из кибернейта создает транзакцию может сохранять управляется через сервис сначала сешнфект потом поинтдао(сохранение и работа с бд) и поинт сервис
 //записывает себе открытую сессию из фабрики, происходят все манипуляции, создаем транзакции и сохраняем
-public class PointDao {
+public class PointDAO {
     //DAO = data aссess object прогуглить
     private Session session;
-    public PointDao(){
+    public PointDAO(){
         session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
     }
     public void save(PointModel point) {

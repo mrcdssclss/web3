@@ -1,9 +1,10 @@
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 @ManagedBean(name="pointBean")
-@ApplicationScoped
+@SessionScoped
 public class PointBean implements Serializable {
     private float r;
     private float x;

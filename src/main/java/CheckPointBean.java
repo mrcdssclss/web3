@@ -1,9 +1,9 @@
+import db.PointDAO;
 import db.PointModel;
-import db.PointService;
 import org.primefaces.PrimeFaces;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,15 +11,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @ManagedBean(name="checkPointBean")
-@ApplicationScoped
+@SessionScoped
 public class CheckPointBean implements Serializable {
-    private PointService pointService = new PointService();
-    private List points = pointService.findAllPoints();
+    private PointDAO pointService = new PointDAO();
+    private List points = pointService.findAll();
     boolean isHit = false;
-
     long startTime = System.nanoTime();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
 
     public void check(PointBean pointBean){
         PointModel pointModel;
@@ -35,7 +33,7 @@ public class CheckPointBean implements Serializable {
         }
         PrimeFaces.current().executeScript("drawCircle(" + pointBean.getX() + "," + pointBean.getY()  + "," + pointModel.getIsHit() + ")");
         points.add(pointModel);
-        pointService.savePoint(pointModel);
+        pointService.save(pointModel);
     }
 
     public List getResults(){

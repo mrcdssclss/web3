@@ -1,4 +1,4 @@
-//todo сделать css сделать r меняющимся
+//todo сделать css
 const graph = document.getElementById("graph")
 updateR()
 
@@ -64,11 +64,10 @@ function drawCircle(x, y, answer) {
     circle.setAttribute("cy", ySVG.toString())
     circle.setAttribute("r", "2")
     circle.setAttribute("class", "circles")
-    circle.setAttribute("fill", answer ? "pink" : "lightblue")
+    circle.setAttribute("fill", answer ? "pink" : "#8F4A46")
 
     svg.appendChild(circle)
 }
-
 
 function isIncorrect(str) {
     return !str || !str.trim() || str.startsWith('.')
@@ -77,15 +76,18 @@ function isIncorrect(str) {
 function validateInputs() {
     const yInput = document.getElementById("mainForm:yInput").value
     const rInput = document.getElementById("mainForm:rInput").value
-    document.getElementById("status").innerText = ""
+    let isValid = true
+    document.getElementById("Rstatus").innerText = ""
+    document.getElementById("Ystatus").innerText = ""
+
 
     if (isIncorrect(yInput) || isNaN(yInput) || yInput < -5 || yInput > 3) {
         document.getElementById("Ystatus").innerText = "Некорректное значение для y"
-        return false
+        isValid = false
     }
     if (isIncorrect(rInput) || isNaN(rInput) || rInput < 2 || rInput > 5) {
         document.getElementById("Rstatus").innerText = "Некорректное значение для r"
-        return false
+        isValid = false
     }
-    return true
+    return isValid
 }
